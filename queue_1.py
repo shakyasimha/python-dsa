@@ -14,6 +14,12 @@ class Queue:
         self.tail = None
         self.size = 0
     
+
+    ## Checks if the queue is empty
+    def is_empty(self):
+        return (self.head is None)
+    
+
     ## Returns the queue size
     def sizeof(self):
         return self.size 
@@ -32,6 +38,7 @@ class Queue:
 
         self.size += 1
         
+
     ## For removing data off the queue
     def deque(self):
         if self.sizeof() == 0:
@@ -43,3 +50,11 @@ class Queue:
         self.size -= 1
 
         return item
+    
+
+    ## Peeking: returns the data front of the queue without removing it
+    def peek(self):
+        if self.is_empty():
+            return IndexError("Empty queue")
+        else:
+            return self.head.data
