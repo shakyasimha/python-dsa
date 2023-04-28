@@ -39,8 +39,9 @@ class Stack:
     def top(self):
         return self.tos.data
     
+
     ## Displaying the entire stack
-    def show(self):
+    def print_stack(self):
         if self.tos is None:
             print("Stack empty")
         else:
