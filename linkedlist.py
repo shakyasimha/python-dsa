@@ -9,7 +9,8 @@ class Node:
 class LinkedList: 
     ## Constructor
     def __init__(self):
-        self.head = Node(None)
+        self.head = None
+
 
     ## Returns the size of the list
     def size(self):
@@ -56,11 +57,20 @@ class LinkedList:
         if pos == 0:
             new_node.next = self.head 
             self.head = new_node
-            return 
+
+        else: 
+            curr_node = self.head 
+            count = 0
+
+            while curr_node and count < pos - 1:
+                curr_node = curr_node.next 
+                count += 1
+
+        if curr_node is None: 
+            raise IndexError("Position out of range")
         
-        while curr_node and count != pos:
-            curr_node = curr_node.next 
-            pos += 1
+        new_node.next = curr_node.next 
+        curr_node.next = new_node
 
         new_node.next = curr_node.next.next 
         curr_node.next = new_node 
@@ -76,31 +86,26 @@ class LinkedList:
         curr_node.next = None
 
 
-
     ## Returns the element at an index
     def at(self, idx):
-        try:
-            curr_node = self.head
-                
-            for i in range(0, idx): 
-                curr_node = curr_node.next 
+        curr_node = self.head
 
-            return curr_node.data
+        for i in range(0, idx):
+            curr_node = curr_node.next 
 
-        except Exception as e:
-            if self.head is None:
-                return -1
+        return curr_node.data
     
 
+    ## Returns head of the linked list
+    def return_head(self):
+        return self.head.data
+    
     ## For printing the entire list
     def print_list(self):
-        if self.head is None:
-            print("The list is empty.")
-        else: 
-            curr_node = self.head.next
+        curr_node = self.head
 
-            while curr_node: 
-                print(f"{curr_node.data}")
-                curr_node = curr_node.next
+        while curr_node: 
+            print(f"{curr_node.data}")
+            curr_node = curr_node.next
 
 
