@@ -95,7 +95,18 @@ class LinkedList:
 
         return curr_node.data
     
+    ## Reversing the list
+    def reverse(self):
+        prev, next = None
+        curr = self.head
 
+        while curr is not None:
+            next = curr.next 
+            curr.next = prev 
+            prev = curr 
+            curr = next 
+
+        
     ## Returns head of the linked list
     def return_head(self):
         return self.head.data
