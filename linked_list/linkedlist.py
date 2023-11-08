@@ -11,7 +11,7 @@ class Node:
 class LinkedList:
     ## Constructor
     def __init__(self):
-        self.head = None 
+        self.head = Node()
     
     """
         All the operations in this linked list:
@@ -29,33 +29,30 @@ class LinkedList:
     """
     ## Checking if the list is null
     def is_null(self):
-        return (self.head is None)
+        return (self.head == None)
     
     ## Return size of the linked list
     def sizeof(self):
-        if self.is_null():
-            return 0 
-        else: 
-            size = 0 
+        size = 0 
+
+        if not self.is_null():
             curr_node = self.head 
-            
             while curr_node is not None: 
                 size+=1 
                 curr_node = curr_node.next 
                 
+        return size
     
     ## Inserting the linked list
     def insert(self, data):
         new_node = Node(data)
         
-        if self.head == None:
+        if self.is_null():
             self.head = new_node
         else: 
             temp = self.head
-            
-            while temp is not None:
+            while temp.next is not None:
                 temp = temp.next
-                
             temp.next = new_node 
             
             
@@ -68,40 +65,42 @@ class LinkedList:
         else: 
             temp = self.head 
             i = 0
-            
-            for i in range(0,idx): 
+            while i < idx: 
                 temp = temp.next 
-                
+                i += 1 
             new_node.next = temp.next 
             temp.next = new_node 
             
             
     ## Pop the elements 
     def pop(self):
-        try: 
+        if self.is_null():
+            return "Empty list"
+        elif self.head.next is None:
+            self.head = None 
+        else: 
             curr_node = self.head 
-            
-            while curr_node.next.next is not None: 
+            while curr_node.next.next is not None:
                 curr_node = curr_node.next 
-                
-            curr_node.next = None 
-        except Exception as e:
-            return str(e)   
+            curr_node.next = None
     
     
     ## Remove element at nth index
     def remove(self, idx):
-        try: 
-            curr_node = self.head 
+        if self.is_null():
+            return "Empty list"
+        elif idx == 0:
+            self.head = self.head.next 
+        else:
+            curr_node = self.head
             i = 0 
             
-            for i in range(0,idx): 
+            while i < idx: 
                 curr_node = curr_node.next 
-                
-            curr_node.next = curr_node.next.next 
-        except Exception as e:
-            return str(e)
-        
+                i+=1
+
+            if curr_node.next is not None:
+                curr_node.next = curr_node.next.next 
         
     ## Add element at head
     def prepend(self, data):
@@ -116,12 +115,9 @@ class LinkedList:
             
     ## Remove element from head 
     def remove_head(self):
-        try: 
-            self.head = self.head.next 
-        except Exception as e:
-            return str(e)
+        self.head = self.head.next 
         
-        
+         
     ## Search for an element in the list 
     def find(self, data):
         try: 
