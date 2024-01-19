@@ -1,4 +1,5 @@
 ## Singly linked list implementation
+from time import time 
 
 ## Node class
 class Node: 
@@ -12,7 +13,7 @@ class LinkedList:
     ## Constructor
     def __init__(self):
         self.head = Node()
-    
+        self.time_elapsed = 0
     """
         All the operations in this linked list:
         
@@ -40,7 +41,7 @@ class LinkedList:
             while curr_node is not None: 
                 size+=1 
                 curr_node = curr_node.next 
-                
+        
         return size
     
     ## Inserting the linked list
@@ -54,7 +55,6 @@ class LinkedList:
             while temp.next is not None:
                 temp = temp.next
             temp.next = new_node 
-            
             
     ## Appending the linked list 
     def append(self, data, idx):
@@ -70,8 +70,7 @@ class LinkedList:
                 i += 1 
             new_node.next = temp.next 
             temp.next = new_node 
-            
-            
+    
     ## Pop the elements 
     def pop(self):
         if self.is_null():
@@ -101,9 +100,9 @@ class LinkedList:
 
             if curr_node.next is not None:
                 curr_node.next = curr_node.next.next 
-        
+                
     ## Add element at head
-    def prepend(self, data):
+    def prepend(self, data):       
         new_node = Node(data)
         
         if self.is_null(): 
@@ -112,14 +111,13 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node 
             
-            
     ## Remove element from head 
     def remove_head(self):
         self.head = self.head.next 
         
          
     ## Search for an element in the list 
-    def find(self, data):
+    def find(self, data):        
         try: 
             curr_node = self.head 
             idx = 0 
@@ -169,10 +167,14 @@ class LinkedList:
             print("Empty list")
         else: 
             curr_node = self.head 
+            final_exp = ""
             
             while curr_node is not None: 
-                print(f"{curr_node.data} -> ")
+                final_exp += str(curr_node.data) + "->"
                 curr_node = curr_node.next 
+            
+            final_exp = final_exp[:-2]  
+            print(final_exp)
                 
                 
         
