@@ -30,9 +30,10 @@ class Stack:
         if not self.is_empty():
             new_node.next = self.tos 
         
-        self.tos = new_node 
+        self.tos = new_node
+        self.size += 1
         
-    def pop(self, data):
+    def pop(self):
         ## Popping data from stack
         if self.is_empty(): 
             print("Stack underflow")
@@ -43,9 +44,10 @@ class Stack:
             pop_data = self.tos.data
             self.tos = self.tos.next
             
+            self.size -= 1
             return pop_data
    
-    def top(self, data):
+    def top(self):
         ## Returns top of the stack
         if self.is_empty(): 
             print("Stack empty")
@@ -54,7 +56,7 @@ class Stack:
             return self.tos.data 
         
         
-    def show(self, data):
+    def show(self):
         ## Print the entire stack
         if not self.is_empty():
             print(f"{self.tos.data} -> TOS")
@@ -63,3 +65,5 @@ class Stack:
             while temp is not None: 
                 print(f"{temp.data}")
                 temp = temp.next
+                
+            print(f"Size of stack: {self.size}")
