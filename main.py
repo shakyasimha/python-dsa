@@ -10,6 +10,10 @@ def main():
         stack.push(data)
 
     stack.show()
+    stack.pop()
+    stack.pop()
+    stack.show()
+    print(f"Top: {stack.top()}")
     
 if __name__ == "__main__":
     main()
