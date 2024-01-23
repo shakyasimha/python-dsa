@@ -1,19 +1,15 @@
-from stack.stack import Stack
+from queue.queue import Queue
 from random import randint 
 
 ## Main function goes here
 def main():
-    stack = Stack()
+    queue = Queue()
     
-    for i in range(0, 15):
+    for i in range(0,15):
         data = randint(0,100)
-        stack.push(data)
+        queue.enque(data)
 
-    stack.show()
-    stack.pop()
-    stack.pop()
-    stack.show()
-    print(f"Top: {stack.top()}")
+    queue.show()
     
 if __name__ == "__main__":
     main()
