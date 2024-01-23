@@ -32,10 +32,10 @@ class Queue:
         try:   
             if self.is_empty():
                 self.head = new_node
-                self.tail = new_node 
+                self.tail = new_node
             else:
                 self.tail.next = new_node
-                self.tail = self.tail.next 
+                self.tail = self.tail.next
                 
             self.size += 1
         except Exception as e:
